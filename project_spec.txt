@@ -1,0 +1,259 @@
+Defensive AI Cybersecurity Project
+Project Window
+Start: April 1
+End: April 30
+
+Checkpoint Submissions: April 5, April 12, April 19, April 26
+Final Report Due: April 26
+Presentation Dates: May 5 and May 7
+
+Overview
+During April, your group will complete a one-month defensive cybersecurity project focused on AI systems, AI-enabled cyber defense, or AI agent security. This project is not about offensive hacking. Your work must stay in a defensive context and focus on how organizations can securely deploy, monitor, protect, and validate AI systems and AI-assisted workflows.
+
+Many organizations are deploying internal LLMs, retrieval systems, copilots, and AI agents. These technologies create important cybersecurity and privacy concerns, including data leakage, prompt injection, insecure retrieval, excessive permissions, weak logging, privacy risks, unsafe automation, and poor validation of AI-generated results. Your group will study one of these problems from the defender’s perspective and propose, test, or evaluate controls that reduce risk.
+
+This project will produce:
+
+a public GitHub repository showing steady progress,
+
+a professional final report in PDF format,
+
+a short presentation with findings and recommendations.
+
+Project Goal
+Your group will act as a junior cybersecurity defense team for an organization deploying or using AI systems.
+
+Your job is to:
+
+identify what must be protected,
+
+analyze realistic threats,
+
+propose or implement defensive controls,
+
+validate whether those controls reduce risk,
+
+explain what residual risk remains.
+
+Approved Project Domains
+Your project must stay within one of the following defensive domains.
+
+1. AI for Cyber Defense
+Use AI to improve defensive security operations.
+
+Possible directions:
+
+LLM-assisted SOC alert triage
+
+AI-based phishing detection and explanation
+
+AI-generated threat intelligence brief with source validation
+
+AI-assisted secure configuration and hardening recommendations
+
+2. Security of LLM Applications
+Focus on protecting organizational LLM systems.
+
+Possible directions:
+
+secure internal LLM deployment risk assessment
+
+prompt injection defense for a RAG chatbot
+
+privacy leakage testing for enterprise LLM use
+
+defensive analysis of model inversion or membership inference risks
+
+secure retrieval and safe data handling for organizational chat systems
+
+3. AI Agent Security
+Focus on protecting AI agents that use tools, memory, or automation.
+
+Possible directions:
+
+least-privilege design for AI agents
+
+human-in-the-loop validation for AI agent actions
+
+secure memory and context management
+
+logging, monitoring, and audit trails for AI agents
+
+4. Governance and Secure Deployment
+Focus on security architecture, policy, and deployment planning.
+
+Possible directions:
+
+secure enterprise LLM deployment blueprint
+
+AI acceptable use and data handling security policy
+
+security evaluation framework for organizational AI tools
+
+Project Requirements
+All projects must remain defensive, lab-only, and safe.
+
+Required for Every Group
+Your final project must include:
+
+a clear project title and scope,
+
+a defined organization or use case,
+
+an asset inventory,
+
+a threat model,
+
+defensive controls proposed or implemented,
+
+a validation or evaluation section,
+
+a before/after comparison or baseline vs improved analysis,
+
+a residual risk discussion,
+
+a professional final report,
+
+a GitHub repository with evidence of progress.
+
+Required Technical or Analytical Evidence
+Each project must include at least some of the following:
+
+architecture diagram,
+
+data flow diagram,
+
+access control or permission matrix,
+
+risk matrix,
+
+control checklist,
+
+alert analysis,
+
+log evidence,
+
+validation table,
+
+policy matrix,
+
+test cases,
+
+comparison results,
+
+screenshots, prompts, or structured artifacts.
+
+Safe Project Rules
+Your project must follow these rules:
+
+Use only approved lab environments, simulations, or synthetic data.
+
+Do not use real private data, real secrets, or real credentials.
+
+Do not test public systems or unauthorized systems.
+
+Do not target real users.
+
+Do not attempt to bypass security on external services.
+
+If you simulate sensitive data, it must be clearly labeled as synthetic or dummy data.
+
+Projects that violate these rules will not be accepted.
+
+Team Structure
+Recommended team size: 3 to 4 students
+
+Suggested team roles:
+
+project lead,
+
+risk/threat analyst,
+
+technical implementation or validation lead,
+
+documentation/presentation lead.
+
+All team members must contribute visibly through commits, writing, diagrams, evidence, or analysis.
+
+GitHub Repository Requirements
+Your GitHub repository must show steady weekly progress and include organized materials.
+
+Minimum Repository Structure
+README.md
+
+checkpoints/
+
+evidence/
+
+analysis/
+
+report/
+
+slides/
+
+artifacts/ or configs/ if applicable
+
+README Must Include
+project title,
+
+team member names,
+
+chosen project domain,
+
+project description,
+
+tools used,
+
+weekly progress summary,
+
+final outcome summary.
+
+Final Deliverables
+By the end of the project, each group must submit:
+
+1. GitHub Repository
+A complete repository with all required materials and visible progress.
+
+2. Final Report (PDF)
+The report must be professional and clearly organized.
+
+Required Sections
+Executive Summary
+
+Project Context / Organizational Scenario
+
+Scope and Assumptions
+
+Asset Inventory
+
+Threat Model
+
+Baseline Findings
+
+Defensive Controls Proposed or Implemented
+
+Validation / Evaluation Results
+
+Before vs After Comparison
+
+Residual Risk
+
+Lessons Learned
+
+References
+
+Appendix with supporting evidence
+
+3. Presentation
+A short presentation summarizing the project and findings.
+
+Presentation Should Include
+the problem,
+
+the assets and risks,
+
+the controls,
+
+the validation results,
+
+the final recommendations
