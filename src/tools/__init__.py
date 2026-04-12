@@ -1,0 +1,1 @@
+"""Simulated assistant tools."""
