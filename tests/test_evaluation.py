@@ -79,17 +79,17 @@ def test_cli_evaluate_smoke(tmp_path, monkeypatch):
     runner = CliRunner()
     monkeypatch.chdir(tmp_path)
 
-    result = runner.invoke(app, ["evaluate", "--scenario-set", "default", "--output-dir", "evidence/sample_outputs"])
+    result = runner.invoke(app, ["evaluate", "--scenario-set", "default", "--output-dir", "evidence/results"])
 
     assert result.exit_code == 0
-    assert (tmp_path / "evidence" / "sample_outputs" / "comparison_summary.json").exists()
+    assert (tmp_path / "evidence" / "results" / "comparison_summary.json").exists()
 
 
 def test_cli_generate_report_artifacts_creates_report_bundle(tmp_path, monkeypatch):
     runner = CliRunner()
     monkeypatch.chdir(tmp_path)
 
-    result = runner.invoke(app, ["generate-report-artifacts", "--scenario-set", "default", "--output-dir", "evidence/sample_outputs"])
+    result = runner.invoke(app, ["generate-report-artifacts", "--scenario-set", "default", "--output-dir", "evidence/results"])
 
     assert result.exit_code == 0
     assert (tmp_path / "report" / "final_report.md").exists()

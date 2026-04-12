@@ -6,4 +6,4 @@ The vulnerable baseline merges user intent and retrieved content into one prompt
 - Leakage rate: 0.190
 - Benign task success rate: 1.000
 
-The latest evidence is generated from the current synthetic scenario set and should be cited alongside `evidence/sample_outputs/comparison.md`.
+The latest evidence is generated from the current synthetic scenario set and should be cited alongside `evidence/results/comparison.md`.

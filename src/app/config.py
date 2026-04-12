@@ -27,7 +27,7 @@ class Settings:
     llm_base_url: str = "http://172.27.112.1:11434/v1"
     llm_model: str = "gemma4:latest"
     llm_timeout_seconds: float = 300.0
-    output_dir: Path = Path("evidence/sample_outputs")
+    output_dir: Path = Path("evidence/results")
     log_level: str = "INFO"
 
 
@@ -41,6 +41,6 @@ def get_settings() -> Settings:
         llm_base_url=lookup("LLM_BASE_URL", "http://172.27.112.1:11434/v1"),
         llm_model=lookup("LLM_MODEL", "gemma4:latest"),
         llm_timeout_seconds=float(lookup("LLM_TIMEOUT_SECONDS", "300")),
-        output_dir=Path(lookup("OUTPUT_DIR", "evidence/sample_outputs")),
+        output_dir=Path(lookup("OUTPUT_DIR", "evidence/results")),
         log_level=lookup("LOG_LEVEL", "INFO"),
     )

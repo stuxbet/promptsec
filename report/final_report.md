@@ -58,7 +58,7 @@ The defended assistant reduced attack success and leakage to zero in the current
 1. Google DeepMind. Lessons from Defending Gemini Against Indirect Prompt Injections. arXiv, 2025.
 
 ## Appendix With Supporting Evidence
-- `evidence/sample_outputs/comparison_summary.json`
-- `evidence/sample_outputs/comparison.md`
-- `evidence/sample_outputs/metrics.png`
+- `evidence/results/comparison_summary.json`
+- `evidence/results/comparison.md`
+- `evidence/results/metrics.png`
 - `artifacts/validation_table.md`

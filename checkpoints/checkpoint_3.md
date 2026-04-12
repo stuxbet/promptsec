@@ -8,5 +8,5 @@
 
 ## Initial Evaluation Status
 - Baseline and defended assistants run on the same scenario set
-- Evidence outputs are written to `evidence/sample_outputs/`
+- Evidence outputs are written to `evidence/results/`
 - Before/after metrics are available as JSON, CSV, Markdown, and chart image

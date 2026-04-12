@@ -3,8 +3,8 @@ __pycache__/
 .pytest_cache/
 .env
 *.pyc
-evidence/sample_outputs/*.json
-evidence/sample_outputs/*.csv
-evidence/sample_outputs/*.md
-evidence/sample_outputs/*.png
-!evidence/sample_outputs/.gitkeep
+evidence/results/*.json
+evidence/results/*.csv
+evidence/results/*.md
+evidence/results/*.png
+!evidence/results/.gitkeep

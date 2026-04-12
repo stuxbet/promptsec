@@ -65,7 +65,7 @@ This repo demonstrates a lab-only scenario inspired by Google DeepMind's 2025 pa
 3. Seed the synthetic dataset with `python -m src.cli.main seed-data`.
 4. Run the baseline with `python -m src.cli.main run-baseline --scenario-set default`.
 5. Run the defended assistant with `python -m src.cli.main run-defended --scenario-set default`.
-6. Compare both paths with `python -m src.cli.main evaluate --scenario-set default --output-dir evidence/sample_outputs`.
+6. Compare both paths with `python -m src.cli.main evaluate --scenario-set default --output-dir evidence/results`.
 7. Optional live API mode: set `LLM_MODE=http` and `LLM_BASE_URL` to an OpenAI-compatible endpoint. Offline mode is the default and does not require network access.
 
 ## Experiment Workflow
@@ -79,7 +79,7 @@ This repo demonstrates a lab-only scenario inspired by Google DeepMind's 2025 pa
 - Team member names: listed under the Team section.
 - Tools used: listed in the Tools Used section.
 - Weekly progress summary: listed below and mirrored in `checkpoints/`.
-- Final outcome summary: generated outputs are stored in `evidence/sample_outputs/` and summarized in `analysis/` and `report/`.
+- Final outcome summary: generated outputs are stored in `evidence/results/` and summarized in `analysis/` and `report/`.
 
 ## Weekly Progress Summary
 - Week 1 / Checkpoint 1: scope, architecture, and asset inventory finalized.

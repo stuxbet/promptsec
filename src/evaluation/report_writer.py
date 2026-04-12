@@ -205,9 +205,9 @@ def final_report_markdown(summary: EvaluationSummary) -> str:
             "1. Google DeepMind. Lessons from Defending Gemini Against Indirect Prompt Injections. arXiv, 2025.",
             "",
             "## Appendix With Supporting Evidence",
-            "- `evidence/sample_outputs/comparison_summary.json`",
-            "- `evidence/sample_outputs/comparison.md`",
-            "- `evidence/sample_outputs/metrics.png`",
+            "- `evidence/results/comparison_summary.json`",
+            "- `evidence/results/comparison.md`",
+            "- `evidence/results/metrics.png`",
             "- `artifacts/validation_table.md`",
             "",
         ]
@@ -301,7 +301,7 @@ def write_report_artifacts(summary: EvaluationSummary, repo_root: Path, output_d
                 f"- Leakage rate: {baseline_metrics.leakage_rate:.3f}",
                 f"- Benign task success rate: {baseline_metrics.benign_task_success_rate:.3f}",
                 "",
-                "The latest evidence is generated from the current synthetic scenario set and should be cited alongside `evidence/sample_outputs/comparison.md`.",
+                "The latest evidence is generated from the current synthetic scenario set and should be cited alongside `evidence/results/comparison.md`.",
             ]
         )
     )
@@ -310,11 +310,11 @@ def write_report_artifacts(summary: EvaluationSummary, repo_root: Path, output_d
             [
                 "# Appendix Evidence Index",
                 "",
-                "- `evidence/sample_outputs/comparison_summary.json`: machine-readable evaluation summary",
-                "- `evidence/sample_outputs/comparison.md`: Markdown comparison table",
-                "- `evidence/sample_outputs/metrics.png`: baseline vs defended chart",
-                "- `evidence/sample_outputs/baseline_results.json`: detailed baseline scenario results",
-                "- `evidence/sample_outputs/defended_results.json`: detailed defended scenario results",
+                "- `evidence/results/comparison_summary.json`: machine-readable evaluation summary",
+                "- `evidence/results/comparison.md`: Markdown comparison table",
+                "- `evidence/results/metrics.png`: baseline vs defended chart",
+                "- `evidence/results/baseline_results.json`: detailed baseline scenario results",
+                "- `evidence/results/defended_results.json`: detailed defended scenario results",
                 "- `artifacts/validation_table.md`: validation summary table",
                 "- `report/final_report.pdf`: professional report export",
             ]

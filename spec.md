@@ -310,7 +310,7 @@ analysis/
 
 evidence/
   screenshots/
-  sample_outputs/
+  results/
   result_tables/
 
 checkpoints/
@@ -340,7 +340,7 @@ Provide a CLI with commands like:
 ```bash
 python -m src.cli.main run-baseline --scenario-set default
 python -m src.cli.main run-defended --scenario-set default
-python -m src.cli.main evaluate --scenario-set default --output-dir evidence/sample_outputs
+python -m src.cli.main evaluate --scenario-set default --output-dir evidence/results
 python -m src.cli.main generate-report-artifacts
 python -m src.cli.main seed-data
 ```
