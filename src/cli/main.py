@@ -11,7 +11,7 @@ from src.data.loader import load_content_items, load_scenarios
 from src.data.seed_data import write_seed_data
 from src.evaluation.report_writer import write_evaluation_outputs, write_report_artifacts
 from src.evaluation.runner import evaluate_assistants, run_assistant_on_scenarios
-from src.llm.interface import create_model_backend
+from src.llm.interface import GemmaModel
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -34,9 +34,10 @@ def run_baseline(
 ) -> None:
     ensure_seeded()
     settings = get_settings()
-    model = create_model_backend(settings)
+    model = GemmaModel(settings)
     items = load_content_items()
     scenarios = load_scenarios(scenario_set=scenario_set)
+    typer.echo(f"Running baseline across {len(scenarios)} scenarios using {settings.llm_mode} model mode.")
     results = run_assistant_on_scenarios("baseline", BaselineAssistant(model), scenarios, items)
     target_dir = output_dir or settings.output_dir
     summary = {
@@ -56,9 +57,10 @@ def run_defended(
 ) -> None:
     ensure_seeded()
     settings = get_settings()
-    model = create_model_backend(settings)
+    model = GemmaModel(settings)
     items = load_content_items()
     scenarios = load_scenarios(scenario_set=scenario_set)
+    typer.echo(f"Running defended assistant across {len(scenarios)} scenarios using {settings.llm_mode} model mode.")
     results = run_assistant_on_scenarios("defended", DefendedAssistant(model), scenarios, items)
     target_dir = output_dir or settings.output_dir
     summary = {
@@ -78,9 +80,10 @@ def evaluate(
 ) -> None:
     ensure_seeded()
     settings = get_settings()
-    model = create_model_backend(settings)
+    model = GemmaModel(settings)
     items = load_content_items()
     scenarios = load_scenarios(scenario_set=scenario_set)
+    typer.echo(f"Evaluating {len(scenarios)} scenarios using {settings.llm_mode} model mode.")
     summary = evaluate_assistants(
         scenario_set=scenario_set,
         baseline_assistant=BaselineAssistant(model),

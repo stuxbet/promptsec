@@ -5,11 +5,11 @@ from src.app.types import ResponseStatus
 from src.assistant.prompts import build_baseline_request
 from src.assistant.tool_router import ToolRouter
 from src.data.retrieval import retrieve_items
-from src.llm.interface import ModelBackend
+from src.llm.interface import GemmaModel
 
 
 class BaselineAssistant:
-    def __init__(self, model: ModelBackend) -> None:
+    def __init__(self, model: GemmaModel) -> None:
         self.model = model
         self.tool_router = ToolRouter(allow_unknown_actions=True)
 
