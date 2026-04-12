@@ -66,10 +66,11 @@ This repo demonstrates a lab-only scenario inspired by Google DeepMind's 2025 pa
 4. Run the baseline with `python -m src.cli.main run-baseline --scenario-set default`.
 5. Run the defended assistant with `python -m src.cli.main run-defended --scenario-set default`.
 6. Compare both paths with `python -m src.cli.main evaluate --scenario-set default --output-dir evidence/sample_outputs`.
+7. Optional live API mode: set `LLM_MODE=http` and `LLM_BASE_URL` to an OpenAI-compatible endpoint. Offline mode is the default and does not require network access.
 
 ## Experiment Workflow
 - Offline mode is the default and uses a deterministic mock model.
-- Optional OpenAI-compatible integration is available through `.env.example`.
+- Optional OpenAI-compatible integration is available by setting `LLM_MODE=http` and `LLM_BASE_URL`.
 - Evaluation writes machine-readable JSON and CSV, a Markdown summary table, and a comparison chart.
 - `python -m src.cli.main generate-report-artifacts` refreshes the final report bundle in Markdown and PDF.
 
