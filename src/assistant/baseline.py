@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Callable
+
 from src.app.models import AssistantResponse, RunLog, Scenario
 from src.app.types import ResponseStatus
 from src.assistant.prompts import build_baseline_request
@@ -13,14 +15,21 @@ class BaselineAssistant:
         self.model = model
         self.tool_router = ToolRouter(allow_unknown_actions=True)
 
-    def run(self, scenario: Scenario, all_items: dict[str, object]) -> AssistantResponse:
+    def run(
+        self,
+        scenario: Scenario,
+        all_items: dict[str, object],
+        progress_callback: Callable[[str], None] | None = None,
+    ) -> AssistantResponse:
         retrieved_items = retrieve_items(
             user_request=scenario.user_request,
             items=all_items,
             preferred_paths=scenario.relevant_data_files,
         )
+        if progress_callback is not None:
+            progress_callback(f"retrieved {len(retrieved_items)} context items")
         model_request = build_baseline_request(scenario.user_request, retrieved_items)
-        model_response = self.model.generate(model_request)
+        model_response = self.model.generate(model_request, progress_callback=progress_callback)
         tool_action = self.tool_router.execute(model_response.action_name, model_response.content)
         run_log = RunLog(
             scenario_id=scenario.scenario_id,

@@ -37,8 +37,14 @@ def run_baseline(
     model = GemmaModel(settings)
     items = load_content_items()
     scenarios = load_scenarios(scenario_set=scenario_set)
-    typer.echo(f"Running baseline across {len(scenarios)} scenarios using {settings.llm_mode} model mode.")
-    results = run_assistant_on_scenarios("baseline", BaselineAssistant(model), scenarios, items)
+    typer.echo(f"Running baseline across {len(scenarios)} scenarios using {settings.llm_model}.")
+    results = run_assistant_on_scenarios(
+        "baseline",
+        BaselineAssistant(model),
+        scenarios,
+        items,
+        progress_callback=typer.echo,
+    )
     target_dir = output_dir or settings.output_dir
     summary = {
         "scenario_set": scenario_set,
@@ -60,8 +66,14 @@ def run_defended(
     model = GemmaModel(settings)
     items = load_content_items()
     scenarios = load_scenarios(scenario_set=scenario_set)
-    typer.echo(f"Running defended assistant across {len(scenarios)} scenarios using {settings.llm_mode} model mode.")
-    results = run_assistant_on_scenarios("defended", DefendedAssistant(model), scenarios, items)
+    typer.echo(f"Running defended assistant across {len(scenarios)} scenarios using {settings.llm_model}.")
+    results = run_assistant_on_scenarios(
+        "defended",
+        DefendedAssistant(model),
+        scenarios,
+        items,
+        progress_callback=typer.echo,
+    )
     target_dir = output_dir or settings.output_dir
     summary = {
         "scenario_set": scenario_set,
@@ -83,13 +95,14 @@ def evaluate(
     model = GemmaModel(settings)
     items = load_content_items()
     scenarios = load_scenarios(scenario_set=scenario_set)
-    typer.echo(f"Evaluating {len(scenarios)} scenarios using {settings.llm_mode} model mode.")
+    typer.echo(f"Evaluating {len(scenarios)} scenarios using {settings.llm_model}.")
     summary = evaluate_assistants(
         scenario_set=scenario_set,
         baseline_assistant=BaselineAssistant(model),
         defended_assistant=DefendedAssistant(model),
         scenarios=scenarios,
         items=items,
+        progress_callback=typer.echo,
     )
     target_dir = output_dir or settings.output_dir
     outputs = write_evaluation_outputs(summary, target_dir)

@@ -1,13 +1,14 @@
 import pytest
 from typer.testing import CliRunner
 
+from src.app.models import ModelResponse
 from src.app.config import get_settings
 from src.assistant.baseline import BaselineAssistant
 from src.assistant.defended import DefendedAssistant
 from src.cli.main import app
 from src.data.loader import load_content_items, load_scenarios
 from src.data.seed_data import write_seed_data
-from src.evaluation.runner import evaluate_assistants
+from src.evaluation.runner import evaluate_assistants, run_assistant_on_scenarios
 from src.llm.interface import GemmaModel
 
 
@@ -45,6 +46,33 @@ def test_evaluation_produces_metrics(tmp_path, model):
     assert "defended" in summary.metrics
     assert 0.0 <= summary.metrics["baseline"].attack_success_rate <= 1.0
     assert 0.0 <= summary.metrics["defended"].attack_success_rate <= 1.0
+
+
+def test_runner_emits_progress_messages(tmp_path):
+    class StubModel:
+        def generate(self, request, progress_callback=None):
+            if progress_callback is not None:
+                progress_callback("stub model invoked")
+            return ModelResponse(action_name="summarize", content="Summary: safe stub output.")
+
+    write_seed_data(tmp_path)
+    items = load_content_items(tmp_path)
+    scenarios = load_scenarios(tmp_path)[:1]
+    messages: list[str] = []
+
+    results = run_assistant_on_scenarios(
+        "baseline",
+        BaselineAssistant(StubModel()),
+        scenarios,
+        items,
+        progress_callback=messages.append,
+    )
+
+    assert len(results) == 1
+    assert any("starting scenario" in message for message in messages)
+    assert any("retrieved" in message for message in messages)
+    assert any("stub model invoked" in message for message in messages)
+    assert any("completed in" in message for message in messages)
 
 
 def test_cli_evaluate_smoke(tmp_path, monkeypatch):
