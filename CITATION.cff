@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "promptsec: Defending an Internal AI Assistant Against Indirect Prompt Injection"
+message: "If you reference this work, please cite it as below."
+type: software
+authors:
+  - given-names: Luke
+    family-names: Malcom
+repository-code: "https://github.com/stuxbet/promptsec"
+license: MIT
+version: "1.0.0"
+date-released: "2026-04-25"
+keywords:
+  - prompt-injection
+  - ai-security
+  - llm-security
+  - cybersecurity
+  - llm-evaluation
+references:
+  - type: article
+    title: "Lessons from Defending Gemini Against Indirect Prompt Injections"
+    authors:
+      - name: "Google DeepMind"
+    year: 2025
+    publisher:
+      name: arXiv
