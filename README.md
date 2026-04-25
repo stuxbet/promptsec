@@ -71,11 +71,7 @@ src/
   tools/       simulated email/doc tools (no real side effects)
 synthetic_data/   committed JSON fixtures (emails, docs, scenarios)
 analysis/         threat model, asset inventory, baseline findings, residual risk
-artifacts/        diagrams, matrices, checklists, test-case mappings
-checkpoints/      staged course deliverables
-evidence/         generated outputs (results, screenshots)
-report/           final report (Markdown + PDF)
-slides/           presentation outline
+evidence/         generated outputs (results, screenshots, validation table)
 tests/            pytest suite
 ```
 
