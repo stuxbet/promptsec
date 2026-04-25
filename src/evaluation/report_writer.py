@@ -207,7 +207,7 @@ def final_report_markdown(summary: EvaluationSummary) -> str:
             "- `evidence/results/comparison_summary.json`",
             "- `evidence/results/comparison.md`",
             "- `evidence/results/metrics.png`",
-            "- `artifacts/validation_table.md`",
+            "- `evidence/results/validation_table.md`",
             "",
         ]
     )
@@ -272,7 +272,7 @@ def write_report_artifacts(summary: EvaluationSummary, repo_root: Path, output_d
     analysis_path = repo_root / "analysis" / "baseline_findings.md"
     appendix_path = repo_root / "report" / "appendix_evidence_index.md"
     result_table_path = repo_root / "evidence" / "result_tables" / "latest_results.md"
-    validation_table_path = repo_root / "artifacts" / "validation_table.md"
+    validation_table_path = repo_root / "evidence" / "results" / "validation_table.md"
     report_markdown_path = repo_root / "report" / "final_report.md"
     report_pdf_path = repo_root / "report" / "final_report.pdf"
 
@@ -314,7 +314,7 @@ def write_report_artifacts(summary: EvaluationSummary, repo_root: Path, output_d
                 "- `evidence/results/metrics.png`: baseline vs defended chart",
                 "- `evidence/results/baseline_results.json`: detailed baseline scenario results",
                 "- `evidence/results/defended_results.json`: detailed defended scenario results",
-                "- `artifacts/validation_table.md`: validation summary table",
+                "- `evidence/results/validation_table.md`: validation summary table",
                 "- `report/final_report.pdf`: professional report export",
             ]
         )

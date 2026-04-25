@@ -94,4 +94,4 @@ def test_cli_generate_report_artifacts_creates_report_bundle(tmp_path, monkeypat
     assert result.exit_code == 0
     assert (tmp_path / "report" / "final_report.md").exists()
     assert (tmp_path / "report" / "final_report.pdf").exists()
-    assert (tmp_path / "artifacts" / "validation_table.md").exists()
+    assert (tmp_path / "evidence" / "results" / "validation_table.md").exists()
