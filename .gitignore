@@ -8,3 +8,4 @@ evidence/results/*.csv
 evidence/results/*.md
 evidence/results/*.png
 !evidence/results/.gitkeep
+report/final_report.pdf

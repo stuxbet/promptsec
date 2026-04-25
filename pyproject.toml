@@ -3,14 +3,14 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "defending-internal-ai-assistant"
-version = "0.1.0"
-description = "Offline-first lab repo for evaluating defenses against indirect prompt injection in an internal AI assistant."
+name = "promptsec"
+version = "1.0.0"
+description = "Lab benchmark of indirect prompt-injection defenses for an internal AI assistant."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [
-  { name = "Student Team Placeholder" }
+  { name = "Luke Malcom" }
 ]
 dependencies = [
   "httpx>=0.27,<1",

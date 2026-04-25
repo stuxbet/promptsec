@@ -1,100 +1,126 @@
 # Defending an Internal AI Assistant Against Indirect Prompt Injection
 
-An offline-first cybersecurity class project that simulates a fictional internal AI assistant, measures how it behaves when synthetic emails and documents contain indirect prompt injection attacks, and compares a vulnerable baseline against a defended pipeline.
+[![ci](https://github.com/stuxbet/promptsec/actions/workflows/ci.yml/badge.svg)](https://github.com/stuxbet/promptsec/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/github/license/stuxbet/promptsec.svg)](LICENSE)
 
-## Team
-- Team Member 1: `TBD`
-- Team Member 2: `TBD`
-- Team Member 3: `TBD`
+A lab-only cybersecurity project that simulates an internal AI assistant, exposes it to synthetic emails and documents containing **indirect prompt injection** attacks, and compares an intentionally vulnerable baseline against a layered defended pipeline.
 
-## Project Domain
-Approved domain: `AI Agent Security`
+Inspired by Google DeepMind's 2025 paper *Lessons from Defending Gemini Against Indirect Prompt Injections*.
 
-Scope: a defensive, lab-only evaluation of a tool-using internal AI assistant that retrieves company content and is exposed to indirect prompt injection risk.
+## What it does
 
-## Project Window And Milestones
-- Project window: April 1 to April 30
-- Checkpoint 1 due: April 5
-- Checkpoint 2 due: April 12
-- Checkpoint 3 due: April 19
-- Checkpoint 4 and final report due: April 26
-- Presentation dates: May 5 and May 7
+- Loads a synthetic corpus of emails and internal documents (some carrying hidden adversarial instructions).
+- Runs each scenario through two assistant pipelines:
+  - **Baseline** — naively merges user request + retrieved content into one prompt, no validation.
+  - **Defended** — source labeling, prompt separation, tool allowlist, output validation, and a simulated approval gate for high-risk drafts.
+- Scores both pipelines on attack success, benign task success, leakage, blocked unsafe actions, and false positives.
+- Writes JSON, CSV, a Markdown comparison table, a matplotlib chart, and a PDF report.
 
-## Organization Scenario
-A fictional company is piloting an internal AI assistant to help staff read emails, search internal policies, summarize results, draft replies, and flag risky items for review. The organization wants to understand how indirect prompt injection in retrieved content can cause unsafe automation, leakage, or approval bypass.
+## Requirements
 
-## Project Description
-This repo demonstrates a lab-only scenario inspired by Google DeepMind's 2025 paper, *Lessons from Defending Gemini Against Indirect Prompt Injections*. The assistant can read synthetic emails, search synthetic internal documents, summarize findings, draft replies, and flag items for review. The baseline path is intentionally weak. The defended path applies layered controls, validation, and simulated human approval for high-risk actions.
-
-## Team Roles
-- Project lead: `TBD`
-- Risk / threat analyst: `TBD`
-- Technical implementation / validation lead: `TBD`
-- Documentation / presentation lead: `TBD`
-
-## Tools Used
 - Python 3.11+
-- Typer CLI
-- Pydantic
-- pytest
-- httpx for optional OpenAI-compatible API access
-- matplotlib for comparison charts and PDF report export
-- Mermaid diagrams in Markdown
+- A reachable **OpenAI-compatible** chat completions endpoint (e.g. local Ollama, LM Studio, vLLM, or a hosted provider). The project does not ship a mock model — a live LLM is required.
 
-## Safety And Ethics
-- All data is synthetic.
-- No real users or systems are targeted.
-- No public services are tested by the offline workflow.
-- No real secrets are used.
-- No offensive exploitation is performed.
-- All actions are simulated or sandboxed for defensive education and research.
+## Setup
 
-## Repo Structure
-- `src/`: application code for assistants, retrieval, evaluation, tools, and CLI.
-- `synthetic_data/`: JSON fixtures for emails, documents, and scenarios.
-- `analysis/`: threat model, baseline findings, asset inventory, and residual risk.
-- `artifacts/`: diagrams, matrices, checklists, and test-case mappings.
-- `checkpoints/`: staged course deliverables.
-- `report/`: final report outline, references, and appendix index.
-- `slides/`: presentation outline.
-- `evidence/`: generated outputs, result tables, and screenshots.
+```bash
+pip install -r requirements.txt
+cp .env.example .env
+# edit .env to point at your endpoint
+```
 
-## Quickstart
-1. Create a Python 3.11+ environment.
-2. Install dependencies with `pip install -r requirements.txt`.
-3. Seed the synthetic dataset with `python -m src.cli.main seed-data`.
-4. Run the baseline with `python -m src.cli.main run-baseline --scenario-set default`.
-5. Run the defended assistant with `python -m src.cli.main run-defended --scenario-set default`.
-6. Compare both paths with `python -m src.cli.main evaluate --scenario-set default --output-dir evidence/results`.
-7. Optional live API mode: set `LLM_MODE=http` and `LLM_BASE_URL` to an OpenAI-compatible endpoint. Offline mode is the default and does not require network access.
+`.env` keys:
 
-## Experiment Workflow
-- Offline mode is the default and uses a deterministic mock model.
-- Optional OpenAI-compatible integration is available by setting `LLM_MODE=http` and `LLM_BASE_URL`.
-- Evaluation writes machine-readable JSON and CSV, a Markdown summary table, and a comparison chart.
-- `python -m src.cli.main generate-report-artifacts` refreshes the final report bundle in Markdown and PDF.
+| key | meaning |
+|---|---|
+| `LLM_BASE_URL` | OpenAI-compatible base URL (e.g. `http://localhost:11434/v1`) |
+| `LLM_MODEL` | model name served by that endpoint |
+| `LLM_API_KEY` | optional, only if your endpoint requires it |
+| `LLM_TIMEOUT_SECONDS` | per-request timeout |
+| `OUTPUT_DIR` | where evaluation artifacts land (default `evidence/results`) |
+| `LOG_LEVEL` | log verbosity |
 
-## Course Deliverables Mapping
-- Project title and domain: covered here in the README header and project-domain section.
-- Team member names: listed under the Team section.
-- Tools used: listed in the Tools Used section.
-- Weekly progress summary: listed below and mirrored in `checkpoints/`.
-- Final outcome summary: generated outputs are stored in `evidence/results/` and summarized in `analysis/` and `report/`.
+## Usage
 
-## Weekly Progress Summary
-- Week 1 / Checkpoint 1: scope, architecture, and asset inventory finalized.
-- Week 2 / Checkpoint 2: threat model and vulnerable baseline completed.
-- Week 3 / Checkpoint 3: layered defenses and initial evaluation completed.
-- Week 4 / Checkpoint 4: refined results, residual risk, report bundle, and presentation artifacts completed.
+```bash
+python -m src.cli.main seed-data                              # write synthetic fixtures
+python -m src.cli.main run-baseline  --scenario-set default   # run the vulnerable assistant
+python -m src.cli.main run-defended  --scenario-set default   # run the defended assistant
+python -m src.cli.main evaluate      --scenario-set default   # both pipelines + metrics + report bundle
+python -m src.cli.main generate-report-artifacts              # refresh Markdown + PDF report
+```
 
-## Current Evaluation Snapshot
-- Baseline attack success rate: `0.700`
-- Defended attack success rate: `0.000`
-- Baseline leakage rate: `0.190`
-- Defended leakage rate: `0.000`
-- Baseline benign task success rate: `1.000`
-- Defended benign task success rate: `1.000`
+`evaluate` writes:
 
-## Final Outcome Summary
-The current offline evaluation shows that the defended assistant materially reduces attack success and leakage relative to the intentionally vulnerable baseline while preserving benign task success across the scenario set. The repo includes the required analysis artifacts, checkpoints, evidence outputs, a report bundle, and presentation scaffolding for the course project.
-# promptsec
+- `evidence/results/comparison_summary.json` — machine-readable metrics
+- `evidence/results/comparison.md` — human-readable summary table
+- `evidence/results/comparison_chart.png` — bar chart
+- `evidence/results/baseline_run.json`, `defended_run.json` — per-scenario logs
+
+## Repo layout
+
+```
+src/
+  app/         config + Pydantic models
+  assistant/   baseline + defended pipelines, policy, validators, prompts
+  cli/         Typer entry point
+  data/        synthetic-data loader, retrieval, seeder
+  evaluation/  scenario scoring, metrics, report writer
+  llm/         OpenAI-compatible HTTP client
+  tools/       simulated email/doc tools (no real side effects)
+synthetic_data/   committed JSON fixtures (emails, docs, scenarios)
+analysis/         threat model, asset inventory, baseline findings, residual risk
+artifacts/        diagrams, matrices, checklists, test-case mappings
+checkpoints/      staged course deliverables
+evidence/         generated outputs (results, screenshots)
+report/           final report (Markdown + PDF)
+slides/           presentation outline
+tests/            pytest suite
+```
+
+## Defenses, in one diagram
+
+```
+user request
+   │
+   ▼
+retrieval ──► trust labels (trusted | untrusted | unknown)
+   │
+   ▼
+prompt assembly  (system rules │ user intent │ retrieved data — kept separate)
+   │
+   ▼
+model call ──► structured ModelResponse (action_name + content)
+   │
+   ▼
+policy + validators
+  ├─ tool allowlist            (summarize | draft_response | flag_for_review | refuse)
+  ├─ leakage / hijack scan
+  ├─ approval-bypass detector
+  └─ request/output mismatch
+   │
+   ▼
+approval gate for high-risk drafts
+   │
+   ▼
+final response + run log
+```
+
+## Tests
+
+```bash
+pytest
+```
+
+Tests hit the configured live endpoint, so a model that doesn't exist or isn't running will fail the suite.
+
+## Safety and ethics
+
+- All data is synthetic; no real users, accounts, or systems are involved.
+- Tools are simulated — no email is sent, no command is executed, no external request is made other than the model call itself.
+- Scope is defensive: this repo demonstrates how to detect and block injection attempts, not how to launch them.
+
+## License
+
+MIT — see `LICENSE`.
